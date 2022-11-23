@@ -9,7 +9,7 @@ import {
 import React, { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {

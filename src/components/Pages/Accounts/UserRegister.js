@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const UserRegister = () => {
+  const { userRegister, userProfileUpdate } = useContext(AuthContext);
+
   const { register, handleSubmit } = useForm();
-  const handleRegister = (data) => console.log(data);
+  const handleRegister = (data) => {
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+
+    const userDetails = {
+      name: data.name,
+      email: data.email,
+    };
+
+    userRegister(email, password)
+      .then((result) => {
+        toast("User account created");
+        userProfileUpdate({ displayName: name })
+          .then(() => toast.success(`Wellcome ${data.name}`))
+          .catch((error) => toast.success("Profile Update Failed"));
+      })
+      .catch((error) => console.log(error.message));
+  };
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
