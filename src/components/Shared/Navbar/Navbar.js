@@ -78,14 +78,14 @@ const Navbar = () => {
         </div>
         <ul className="flex items-center hidden space-x-8 lg:flex">
           <li>
-            <a
-              href="/"
+            <Link
+              to="/seller-register"
               aria-label="Sign in"
               title="Sign in"
               className=" tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-400 font-bold"
             >
               Become a Seller
-            </a>
+            </Link>
           </li>
           <li>
             <Link

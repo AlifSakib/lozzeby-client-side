@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../components/Home/Home";
+import SellerRegister from "../components/Pages/Accounts/SellerRegister";
 import UserRegister from "../components/Pages/Accounts/UserRegister";
 import UsersLogin from "../components/Pages/Accounts/UsersLogin";
 import Main from "../layout/Main";
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/users-login",
         element: <UsersLogin></UsersLogin>,
+      },
+      {
+        path: "/seller-register",
+        element: <SellerRegister></SellerRegister>,
       },
     ],
   },
