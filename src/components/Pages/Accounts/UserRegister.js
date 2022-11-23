@@ -20,7 +20,7 @@ const UserRegister = () => {
 
     userRegister(email, password)
       .then((result) => {
-        toast("User account created");
+        toast.success("User account created");
         userProfileUpdate({ displayName: name })
           .then(() => toast.success(`Wellcome ${data.name}`))
           .catch((error) =>
@@ -37,8 +37,8 @@ const UserRegister = () => {
             onSubmit={handleSubmit(handleRegister)}
             className="w-full max-w-md"
           >
-            <h1 className="text-3xl font-semibold text-gray-800 capitalize dark:text-white">
-              Register
+            <h1 className="text-3xl font-semibold text-gray-800  dark:text-white">
+              Register as a User
             </h1>
 
             <div className="relative flex items-center mt-8">

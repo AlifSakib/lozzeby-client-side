@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const SellerRegister = () => {
+  const { userRegister, userProfileUpdate } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
-  const handleRegister = (data) => console.log(data);
+
+  const handleRegister = (data) => {
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+
+    const userDetails = {
+      name: data.name,
+      email: data.email,
+    };
+
+    userRegister(email, password)
+      .then((result) => {
+        toast.success("Seller account created");
+        userProfileUpdate({ displayName: name })
+          .then(() => toast.success(`Wellcome ${data.name}`))
+          .catch((error) =>
+            toast.success("Somthing wrong , Please contact us")
+          );
+      })
+      .catch((error) => toast.error("Account creation failed"));
+  };
+
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -13,7 +38,7 @@ const SellerRegister = () => {
             onSubmit={handleSubmit(handleRegister)}
             className="w-full max-w-md"
           >
-            <h1 className="text-3xl font-semibold text-gray-800 capitalize dark:text-white">
+            <h1 className="text-3xl font-semibold text-gray-800  dark:text-white">
               Register as a Seller
             </h1>
 
