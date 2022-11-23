@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const UsersLogin = () => {
+  const { userLogin } = useContext(AuthContext);
+
   const { register, handleSubmit } = useForm();
-  const handleRegister = (data) => console.log(data);
+  const handleLogin = (data) => {
+    const email = data.email;
+    const password = data.password;
+
+    userLogin(email, password)
+      .then((result) =>
+        toast.success(`Wellcome Back ${result.user.displayName}`)
+      )
+      .catch((error) => toast.error("Please Provide the correct information"));
+  };
+
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
         <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
           <form
-            onSubmit={handleSubmit(handleRegister)}
+            onSubmit={handleSubmit(handleLogin)}
             className="w-full max-w-md"
           >
             <h1 className="text-3xl font-semibold text-gray-800 capitalize dark:text-white">

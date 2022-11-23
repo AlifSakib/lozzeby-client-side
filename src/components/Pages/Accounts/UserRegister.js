@@ -23,9 +23,11 @@ const UserRegister = () => {
         toast("User account created");
         userProfileUpdate({ displayName: name })
           .then(() => toast.success(`Wellcome ${data.name}`))
-          .catch((error) => toast.success("Profile Update Failed"));
+          .catch((error) =>
+            toast.success("Somthing wrong , Please contact us")
+          );
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => toast.error("Account creation failed"));
   };
   return (
     <div>
