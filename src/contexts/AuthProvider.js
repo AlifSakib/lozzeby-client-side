@@ -3,6 +3,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import React, { createContext, useState } from "react";
 import app from "../firebase/firebase.config";
@@ -26,6 +27,9 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const userProfileUpdate = (profileInfo) => {
+    return updateProfile(auth.currentUser, profileInfo);
+  };
   const value = { user, loading };
   return (
     <div>
