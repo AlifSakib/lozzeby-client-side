@@ -82,49 +82,55 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        {user?.uid ? (
-          <Link to="/">
-            <button
-              onClick={handleLogout}
-              className="inline-flex items-center justify-center h-12 px-6  tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none font-bold"
-            >
-              Logout
-            </button>
-          </Link>
-        ) : (
-          <ul className="flex items-center hidden space-x-8 lg:flex">
-            <li>
-              <Link
-                to="/seller-register"
-                aria-label="Sign in"
-                title="Sign in"
-                className=" tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-400 font-bold"
-              >
-                Become a Seller
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/users-login"
-                aria-label="Sign in"
-                title="Sign in"
-                className=" tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400 font-bold"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/user-register"
-                className="inline-flex items-center justify-center h-12 px-6  tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none font-bold"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Register
-              </Link>
-            </li>
-          </ul>
-        )}
+        <ul className="flex items-center hidden space-x-8 lg:flex">
+          {user?.uid ? (
+            <>
+              <li>
+                <Link to="/">
+                  <button
+                    onClick={handleLogout}
+                    className="inline-flex items-center justify-center h-12 px-6  tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none font-bold"
+                  >
+                    Logout
+                  </button>
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link
+                  to="/seller-register"
+                  aria-label="Sign in"
+                  title="Sign in"
+                  className=" tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-400 font-bold"
+                >
+                  Become a Seller
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/users-login"
+                  aria-label="Sign in"
+                  title="Sign in"
+                  className=" tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400 font-bold"
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/user-register"
+                  className="inline-flex items-center justify-center h-12 px-6  tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none font-bold"
+                  aria-label="Sign up"
+                  title="Sign up"
+                >
+                  Register
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
 
         <div className="lg:hidden">
           <button
@@ -149,7 +155,7 @@ const Navbar = () => {
             </svg>
           </button>
           {isMenuOpen && (
-            <div className="absolute top-0 left-0 w-full">
+            <div className="absolute top-0 left-0 w-full z-10">
               <div className="p-5 bg-white border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
