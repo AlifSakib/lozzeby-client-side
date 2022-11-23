@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import cooler from "../../assets/category-image/cooler-category.avif";
 import gpu from "../../assets/category-image/gpu-category.avif";
 import ram from "../../assets/category-image/ram-category.avif";
@@ -26,11 +27,11 @@ const ProductCategories = () => {
               </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
+              Grab your graphics card as soon as possible , new item are
+              arriving everyday . Hurry up . Visit to explore more
             </p>
-            <a
-              href="#"
+            <Link
+              to=""
               class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Visit Category
@@ -47,7 +48,7 @@ const ProductCategories = () => {
                   clip-rule="evenodd"
                 ></path>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -62,8 +63,8 @@ const ProductCategories = () => {
               </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
+              Grab your favourite cooler as soon as possible , new item are
+              arriving everyday . Hurry up . Visit to explore more
             </p>
             <a
               href="#"
@@ -98,8 +99,8 @@ const ProductCategories = () => {
               </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
+              Grab your computer ram as soon as possible , new item are arriving
+              everyday . Hurry up . Visit to explore more
             </p>
             <a
               href="#"
