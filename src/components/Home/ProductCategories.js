@@ -1,10 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Link } from "react-router-dom";
-import cooler from "../../assets/category-image/cooler-category.avif";
-import gpu from "../../assets/category-image/gpu-category.avif";
-import ram from "../../assets/category-image/ram-category.avif";
+import Category from "./Category";
 
 const ProductCategories = () => {
+  const { data: categories } = useQuery({
+    queryKey: ["product-categories"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/product-categories");
+      const data = await res.json();
+      return data;
+    },
+  });
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="mb-8">
@@ -16,113 +22,9 @@ const ProductCategories = () => {
         </span>
       </div>
       <div className="grid gap-8 row-gap-5 mb-8 lg:grid-cols-3 lg:row-gap-8">
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-            <img class="rounded-t-lg h-64" src={gpu} alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Graphics Card
-              </h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Grab your graphics card as soon as possible , new item are
-              arriving everyday . Hurry up . Visit to explore more
-            </p>
-            <Link
-              to=""
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Visit Category
-              <svg
-                aria-hidden="true"
-                class="w-4 h-4 ml-2 -mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-            <img class="rounded-t-lg h-64" src={cooler} alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                CPU Cooler
-              </h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Grab your favourite cooler as soon as possible , new item are
-              arriving everyday . Hurry up . Visit to explore more
-            </p>
-            <a
-              href="#"
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Visit Category
-              <svg
-                aria-hidden="true"
-                class="w-4 h-4 ml-2 -mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-            <img class="rounded-t-lg h-64" src={ram} alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Computer Ram
-              </h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Grab your computer ram as soon as possible , new item are arriving
-              everyday . Hurry up . Visit to explore more
-            </p>
-            <a
-              href="#"
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Visit Category
-              <svg
-                aria-hidden="true"
-                class="w-4 h-4 ml-2 -mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </a>
-          </div>
-        </div>
+        {categories.map((category) => (
+          <Category key={category._id} category={category}></Category>
+        ))}
       </div>
     </div>
   );
