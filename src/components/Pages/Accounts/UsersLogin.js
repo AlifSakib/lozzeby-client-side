@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const UserRegister = () => {
+const UsersLogin = () => {
   const { register, handleSubmit } = useForm();
   const handleRegister = (data) => console.log(data);
   return (
@@ -14,34 +14,8 @@ const UserRegister = () => {
             className="w-full max-w-md"
           >
             <h1 className="text-3xl font-semibold text-gray-800 capitalize dark:text-white">
-              Register
+              Login
             </h1>
-
-            <div className="relative flex items-center mt-8">
-              <span className="absolute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                  />
-                </svg>
-              </span>
-
-              <input
-                type="text"
-                className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="Your name"
-                {...register("name")}
-              />
-            </div>
             <div className="relative flex items-center mt-4">
               <span className="absolute">
                 <svg
@@ -103,7 +77,7 @@ const UserRegister = () => {
               </button>
 
               <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
-                Or register with
+                Or log in with
               </p>
 
               <a
@@ -134,10 +108,10 @@ const UserRegister = () => {
 
               <div className="mt-6 text-center ">
                 <Link
-                  to="/users-login"
+                  to="/user-register"
                   className="text-sm text-blue-500 hover:underline dark:text-blue-400"
                 >
-                  Already have an account ? Login
+                  Don't have an account yet? Register
                 </Link>
               </div>
             </div>
@@ -148,4 +122,4 @@ const UserRegister = () => {
   );
 };
 
-export default UserRegister;
+export default UsersLogin;

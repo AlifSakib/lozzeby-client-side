@@ -33,13 +33,13 @@ const Navbar = () => {
               LozzeBy.
             </span>
           </a>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+          <ul className="flex items-center hidden space-x-8 lg:flex ">
             <li>
               <a
                 href="/"
                 aria-label="Our product"
                 title="Our product"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                className="font-bold tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400 "
               >
                 Product
               </a>
@@ -49,7 +49,7 @@ const Navbar = () => {
                 href="/"
                 aria-label="Our product"
                 title="Our product"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                className="font-bold  tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Features
               </a>
@@ -59,7 +59,7 @@ const Navbar = () => {
                 href="/"
                 aria-label="Product pricing"
                 title="Product pricing"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                className="font-bold  tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Pricing
               </a>
@@ -69,7 +69,7 @@ const Navbar = () => {
                 href="/"
                 aria-label="About us"
                 title="About us"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                className="font-bold  tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 About us
               </a>
@@ -82,20 +82,20 @@ const Navbar = () => {
               href="/"
               aria-label="Sign in"
               title="Sign in"
-              className=" tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400 font-bold"
+              className=" tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-400 font-bold"
             >
               Become a Seller
             </a>
           </li>
           <li>
-            <a
-              href="/"
+            <Link
+              to="/users-login"
               aria-label="Sign in"
               title="Sign in"
               className=" tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400 font-bold"
             >
               Login
-            </a>
+            </Link>
           </li>
           <li>
             <Link
