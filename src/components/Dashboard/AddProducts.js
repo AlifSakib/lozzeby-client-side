@@ -50,7 +50,6 @@ const AddProducts = () => {
           .then((res) => res.json())
           .then((data) => {
             toast.success("Product Added");
-            console.log(data);
           });
       });
   };

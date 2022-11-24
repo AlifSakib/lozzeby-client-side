@@ -56,16 +56,18 @@ const Navbar = () => {
                 Products
               </a>
             </li>
-            <li>
-              <Link
-                to="/dashboard"
-                aria-label="Product pricing"
-                title="Product pricing"
-                className="font-bold  tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                Dashboard
-              </Link>
-            </li>
+            {user?.uid && (
+              <li>
+                <Link
+                  to="/dashboard"
+                  aria-label="Product pricing"
+                  title="Product pricing"
+                  className="font-bold  tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  Dashboard
+                </Link>
+              </li>
+            )}
             <li>
               <a
                 href="/"

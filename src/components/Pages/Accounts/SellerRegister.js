@@ -16,7 +16,18 @@ const SellerRegister = () => {
     const userDetails = {
       name: data.name,
       email: data.email,
+      role: "seller",
     };
+
+    fetch("http://localhost:5000/sellers", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userDetails),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
 
     userRegister(email, password)
       .then((result) => {
