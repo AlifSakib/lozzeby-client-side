@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const UsersLogin = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const { userLogin } = useContext(AuthContext);
 
   const { register, handleSubmit } = useForm();
@@ -13,9 +16,10 @@ const UsersLogin = () => {
     const password = data.password;
 
     userLogin(email, password)
-      .then((result) =>
-        toast.success(`Wellcome Back ${result.user.displayName}`)
-      )
+      .then((result) => {
+        navigate(from, { replace: true });
+        toast.success(`Wellcome Back ${result.user.displayName}`);
+      })
       .catch((error) => toast.error("Please Provide the correct information"));
   };
 

@@ -5,6 +5,7 @@ import UserRegister from "../components/Pages/Accounts/UserRegister";
 import UsersLogin from "../components/Pages/Accounts/UsersLogin";
 import ResaleProducts from "../components/Pages/ResaleProducts/ResaleProducts";
 import Main from "../layout/Main";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/category/:id",
-        element: <ResaleProducts></ResaleProducts>,
+        element: (
+          <PrivateRoute>
+            <ResaleProducts></ResaleProducts>
+          </PrivateRoute>
+        ),
         loader: async ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
       },
