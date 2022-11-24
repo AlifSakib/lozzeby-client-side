@@ -4,6 +4,7 @@ import SellerRegister from "../components/Pages/Accounts/SellerRegister";
 import UserRegister from "../components/Pages/Accounts/UserRegister";
 import UsersLogin from "../components/Pages/Accounts/UsersLogin";
 import ResaleProducts from "../components/Pages/ResaleProducts/ResaleProducts";
+import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
 import PrivateRoute from "./PrivateRoute";
 
@@ -40,5 +41,9 @@ export const router = createBrowserRouter([
           fetch(`http://localhost:5000/category/${params.id}`),
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
   },
 ]);

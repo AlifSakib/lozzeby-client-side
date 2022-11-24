@@ -45,7 +45,7 @@ const Navbar = () => {
                 to="/"
                 aria-label="Our product"
                 title="Our product"
-                className="font-bold tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400 "
+                className="font-bold tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Home
               </Link>
