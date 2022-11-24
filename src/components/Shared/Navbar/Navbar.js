@@ -14,8 +14,8 @@ const Navbar = () => {
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
         <div className="flex items-center">
-          <a
-            href="/"
+          <Link
+            to="/"
             aria-label="Company"
             title="Company"
             className="inline-flex items-center mr-8"
@@ -38,7 +38,7 @@ const Navbar = () => {
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800">
               LozzeBy.
             </span>
-          </a>
+          </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex ">
             <li>
               <a

@@ -3,6 +3,7 @@ import Home from "../components/Home/Home";
 import SellerRegister from "../components/Pages/Accounts/SellerRegister";
 import UserRegister from "../components/Pages/Accounts/UserRegister";
 import UsersLogin from "../components/Pages/Accounts/UsersLogin";
+import ResaleProducts from "../components/Pages/ResaleProducts/ResaleProducts";
 import Main from "../layout/Main";
 
 export const router = createBrowserRouter([
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "/seller-register",
         element: <SellerRegister></SellerRegister>,
+      },
+      {
+        path: "/category/:id",
+        element: <ResaleProducts></ResaleProducts>,
       },
     ],
   },

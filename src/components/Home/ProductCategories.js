@@ -3,7 +3,7 @@ import React from "react";
 import Category from "./Category";
 
 const ProductCategories = () => {
-  const { data: categories } = useQuery({
+  const { data: categories = [] } = useQuery({
     queryKey: ["product-categories"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/product-categories");
