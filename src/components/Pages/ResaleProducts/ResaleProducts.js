@@ -5,6 +5,7 @@ import ResaleProduct from "./ResaleProduct";
 
 const ResaleProducts = () => {
   const products = useLoaderData();
+  console.log(products);
 
   const [selectedProduct, setSelectedProduct] = useState([]);
   let [isOpen, setIsOpen] = useState(false);

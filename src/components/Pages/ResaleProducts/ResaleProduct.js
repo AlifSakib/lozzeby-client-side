@@ -2,8 +2,8 @@ import React from "react";
 
 const ResaleProduct = ({ product, openModal, handleCart }) => {
   const {
-    name,
-    img,
+    product_name,
+    product_image,
     location,
     resale_price,
     original_price,
@@ -35,10 +35,14 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
           </svg>
         </button>
 
-        <img alt="Toy" src={img} className="h-full w-full object-contain" />
+        <img
+          alt="Toy"
+          src={product_image}
+          className="h-full w-full object-contain"
+        />
 
         <div className="p-6">
-          <h3 className="mt-1 text-2xl font-bold">{name}</h3>
+          <h3 className="mt-1 text-2xl font-bold">{product_name}</h3>
           <p className="text-sm font-medium text-gray-600">
             Resale Price : {resale_price}$
           </p>

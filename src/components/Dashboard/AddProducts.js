@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 
 const AddProducts = () => {
   const { data: categories = [] } = useQuery({
@@ -29,7 +30,7 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((imageData) => {
         const productDetails = {
-          categoy_id: form.categoy_id.value,
+          category_id: form.categoy_id.value,
           seller_name: form.name.value,
           product_name: form.profuct_name.value,
           years_of_use: form.year_of_use.value,
@@ -39,7 +40,18 @@ const AddProducts = () => {
           location: form.location.value,
           time: new Date().toLocaleDateString(),
         };
-        console.log(productDetails);
+        fetch("http://localhost:5000/add-product", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(productDetails),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            toast.success("Product Added");
+            console.log(data);
+          });
       });
   };
 
