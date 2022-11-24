@@ -44,6 +44,7 @@ const AddProducts = () => {
           product_condition: form.product_condition.value,
           time: new Date().toLocaleDateString(),
           product_status: "Not Verified",
+          seller_phone: form.phone_number.value,
           description: form.description.value,
         };
 

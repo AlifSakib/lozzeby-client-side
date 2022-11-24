@@ -11,7 +11,14 @@ const BookingModal = ({
   selectedProduct,
 }) => {
   const { user } = useContext(AuthContext);
-  const { name, resale_price } = selectedProduct;
+  const {
+    product_name,
+    resale_price,
+    seller_email,
+    _id,
+    product_image,
+    seller_phone,
+  } = selectedProduct;
 
   const handleBooking = (e) => {
     e.preventDefault();
@@ -21,10 +28,25 @@ const BookingModal = ({
       email: form.email.value,
       product_name: form.productname.value,
       product_price: form.productprice.value,
-      phone_number: form.phonenumber.value,
+      buyer_phone: form.phonenumber.value,
       location: form.location.value,
+      seller_email,
+      product_id: _id,
+      product_image,
+      seller_phone,
     };
-    toast.success("Product Booked");
+
+    fetch("http://localhost:5000/buyer-orders", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingDetails),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Product Booked");
+      });
   };
 
   return (
@@ -117,7 +139,7 @@ const BookingModal = ({
                           type="text"
                           id="Product-Name"
                           placeholder="Product Name"
-                          defaultValue={name}
+                          defaultValue={product_name}
                           disabled
                           className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                           name="productname"
