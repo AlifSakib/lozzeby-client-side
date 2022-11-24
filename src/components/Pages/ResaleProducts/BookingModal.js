@@ -10,7 +10,7 @@ const BookingModal = ({
   selectedProduct,
 }) => {
   const { user } = useContext(AuthContext);
-  console.log(selectedProduct, user);
+  const { name, resale_price } = selectedProduct;
   return (
     <div>
       <>
@@ -42,26 +42,128 @@ const BookingModal = ({
                   <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
+                      className="text-xl font-medium leading-6 text-gray-900"
                     >
-                      Payment successful
+                      Fill out the form for confirm booking.
                     </Dialog.Title>
-                    <div className="mt-2">
+                    <div className="my-2">
                       <p className="text-sm text-gray-500">
-                        Your payment has been successfully submitted. We’ve sent
-                        you an email with all of the details of your order.
+                        Please fillup the require information to confirm
+                        booking.
                       </p>
                     </div>
+                    <form className="space-y-2">
+                      <div>
+                        <label
+                          htmlFor="UserEmail"
+                          className="block text-xs font-medium text-gray-700"
+                        >
+                          Name
+                        </label>
 
-                    <div className="mt-4">
-                      <button
-                        type="button"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                        onClick={closeModal}
-                      >
-                        Got it, thanks!
-                      </button>
-                    </div>
+                        <input
+                          defaultValue={user?.displayName}
+                          disabled
+                          type="text"
+                          id="name"
+                          placeholder="Your name"
+                          className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="UserEmail"
+                          className="block text-xs font-medium text-gray-700"
+                        >
+                          Email
+                        </label>
+
+                        <input
+                          type="email"
+                          id="UserEmail"
+                          placeholder="john@rhcp.com"
+                          defaultValue={user?.email}
+                          disabled
+                          className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="UserEmail"
+                          className="block text-xs font-medium text-gray-700"
+                        >
+                          Product Name
+                        </label>
+
+                        <input
+                          type="text"
+                          id="Product-Name"
+                          placeholder="Product Name"
+                          defaultValue={name}
+                          disabled
+                          className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="UserEmail"
+                          className="block text-xs font-medium text-gray-700"
+                        >
+                          Price
+                        </label>
+
+                        <input
+                          type="text"
+                          id="Product-Price"
+                          defaultValue={`${resale_price}$`}
+                          disabled
+                          placeholder="john@rhcp.com"
+                          className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="UserEmail"
+                          className="block text-xs font-medium text-gray-700"
+                        >
+                          Phone Number
+                        </label>
+
+                        <input
+                          type="text"
+                          id="Phone Number"
+                          placeholder="Your phone number"
+                          className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="UserLocation"
+                          className="block text-xs font-medium text-gray-700"
+                        >
+                          Location
+                        </label>
+
+                        <input
+                          type="text"
+                          id="location"
+                          required
+                          placeholder="Your Location"
+                          className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <button
+                          type="submit"
+                          className="w-full inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          onClick={() => closeModal()}
+                        >
+                          Confirm Booking!
+                        </button>
+                      </div>
+                    </form>
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
