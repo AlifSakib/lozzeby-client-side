@@ -57,18 +57,18 @@ const Navbar = () => {
                 title="Our product"
                 className="font-bold  tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
-                Features
+                Products
               </a>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                to="/dashboard"
                 aria-label="Product pricing"
                 title="Product pricing"
                 className="font-bold  tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
-                Pricing
-              </a>
+                Dashboard
+              </Link>
             </li>
             <li>
               <a

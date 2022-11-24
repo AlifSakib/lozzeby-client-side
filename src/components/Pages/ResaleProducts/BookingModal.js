@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const BookingModal = ({
@@ -11,6 +12,21 @@ const BookingModal = ({
 }) => {
   const { user } = useContext(AuthContext);
   const { name, resale_price } = selectedProduct;
+
+  const handleBooking = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const bookingDetails = {
+      name: form.name.value,
+      email: form.email.value,
+      product_name: form.productname.value,
+      product_price: form.productprice.value,
+      phone_number: form.phonenumber.value,
+      location: form.location.value,
+    };
+    toast.success("Product Booked");
+  };
+
   return (
     <div>
       <>
@@ -52,7 +68,7 @@ const BookingModal = ({
                         booking.
                       </p>
                     </div>
-                    <form className="space-y-2">
+                    <form onSubmit={handleBooking} className="space-y-2">
                       <div>
                         <label
                           htmlFor="UserEmail"
@@ -68,6 +84,7 @@ const BookingModal = ({
                           id="name"
                           placeholder="Your name"
                           className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                          name="name"
                         />
                       </div>
                       <div>
@@ -85,6 +102,7 @@ const BookingModal = ({
                           defaultValue={user?.email}
                           disabled
                           className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                          name="email"
                         />
                       </div>
                       <div>
@@ -102,6 +120,7 @@ const BookingModal = ({
                           defaultValue={name}
                           disabled
                           className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                          name="productname"
                         />
                       </div>
                       <div>
@@ -119,6 +138,7 @@ const BookingModal = ({
                           disabled
                           placeholder="john@rhcp.com"
                           className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                          name="productprice"
                         />
                       </div>
 
@@ -136,6 +156,7 @@ const BookingModal = ({
                           placeholder="Your phone number"
                           className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
                           required
+                          name="phonenumber"
                         />
                       </div>
                       <div>
@@ -152,13 +173,14 @@ const BookingModal = ({
                           required
                           placeholder="Your Location"
                           className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                          name="location"
                         />
                       </div>
                       <div className="mt-4">
                         <button
                           type="submit"
                           className="w-full inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                          onClick={() => closeModal()}
+                          onClick={closeModal}
                         >
                           Confirm Booking!
                         </button>
