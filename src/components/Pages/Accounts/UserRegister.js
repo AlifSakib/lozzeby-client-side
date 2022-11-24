@@ -16,13 +16,25 @@ const UserRegister = () => {
     const userDetails = {
       name: data.name,
       email: data.email,
+      role: "buyer",
     };
 
     userRegister(email, password)
       .then((result) => {
         toast.success("User account created");
         userProfileUpdate({ displayName: name })
-          .then(() => toast.success(`Wellcome ${data.name}`))
+          .then(() => {
+            toast.success(`Wellcome ${data.name}`);
+            fetch("http://localhost:5000/buyers", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userDetails),
+            })
+              .then((res) => res.json())
+              .then((data) => console.log(data));
+          })
           .catch((error) =>
             toast.success("Somthing wrong , Please contact us")
           );
