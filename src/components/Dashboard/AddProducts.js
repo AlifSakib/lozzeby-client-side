@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const AddProducts = () => {
+  const { user } = useContext(AuthContext);
   const { data: categories = [] } = useQuery({
     queryKey: ["product-categories"],
     queryFn: async () => {
@@ -31,6 +33,7 @@ const AddProducts = () => {
       .then((imageData) => {
         const productDetails = {
           category_id: form.categoy_id.value,
+          seller_email: form.email.value,
           seller_name: form.name.value,
           product_name: form.profuct_name.value,
           years_of_use: form.year_of_use.value,
@@ -38,8 +41,12 @@ const AddProducts = () => {
           resale_price: form.resale_price.value,
           original_price: form.original_price.value,
           location: form.location.value,
+          product_condition: form.product_condition.value,
           time: new Date().toLocaleDateString(),
+          product_status: "Not Verified",
+          description: form.description.value,
         };
+
         fetch("http://localhost:5000/add-product", {
           method: "POST",
           headers: {
@@ -111,6 +118,22 @@ const AddProducts = () => {
                   <input
                     type="text"
                     name="name"
+                    defaultValue={user?.displayName}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="Name"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Your Email
+                  </label>
+
+                  <input
+                    type="text"
+                    name="email"
+                    defaultValue={user?.email}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -187,20 +210,19 @@ const AddProducts = () => {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="image"
+                    htmlFor="years of use"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Product Image:
+                    Phone Number
                   </label>
+
                   <input
-                    type="file"
-                    id="image"
-                    name="image"
-                    accept="image/*"
-                    className="py-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    type="text"
+                    id="phone_nmber"
+                    name="phone_number"
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
                 <div className="col-span-6 sm:col-span-3">
@@ -220,6 +242,52 @@ const AddProducts = () => {
                       </option>
                     ))}
                   </select>
+                </div>
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="image"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Product Condition
+                  </label>
+                  <select
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    name="product_condition"
+                  >
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                  </select>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="image"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Product Image:
+                  </label>
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/*"
+                    className="py-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <label
+                    htmlFor="Product Description"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Product Description
+                  </label>
+
+                  <textarea
+                    type="text"
+                    id="description"
+                    name="description"
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
                 </div>
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4 w-full">
                   <button
