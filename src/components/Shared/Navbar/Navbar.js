@@ -41,14 +41,14 @@ const Navbar = () => {
           </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex ">
             <li>
-              <a
-                href="/"
+              <Link
+                to="/"
                 aria-label="Our product"
                 title="Our product"
                 className="font-bold tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400 "
               >
-                Product
-              </a>
+                Home
+              </Link>
             </li>
             <li>
               <a
