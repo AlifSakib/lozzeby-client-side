@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import BookingModal from "./BookingModal";
 import ResaleProduct from "./ResaleProduct";
 
 const ResaleProducts = () => {
   const products = useLoaderData();
+
+  const [selectedProduct, setSelectedProduct] = useState([]);
+  let [isOpen, setIsOpen] = useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  const handleCart = (product) => {
+    setSelectedProduct(product);
+    openModal();
+  };
   return (
     <div>
       <section>
@@ -20,8 +37,22 @@ const ResaleProducts = () => {
               <ResaleProduct
                 key={product._id}
                 product={product}
+                isOpen={isOpen}
+                closeModal={closeModal}
+                openModal={openModal}
+                setIsOpen={setIsOpen}
+                handleCart={handleCart}
               ></ResaleProduct>
             ))}
+          </div>
+          <div>
+            <BookingModal
+              isOpen={isOpen}
+              closeModal={closeModal}
+              openModal={openModal}
+              setIsOpen={setIsOpen}
+              selectedProduct={selectedProduct}
+            ></BookingModal>
           </div>
         </div>
       </section>

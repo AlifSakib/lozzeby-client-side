@@ -1,6 +1,6 @@
 import React from "react";
 
-const ResaleProduct = ({ product }) => {
+const ResaleProduct = ({ product, openModal, handleCart }) => {
   const {
     name,
     img,
@@ -13,7 +13,7 @@ const ResaleProduct = ({ product }) => {
   } = product;
   return (
     <div>
-      <a href="/" className="relative block border border-gray-100">
+      <div className="relative block border border-gray-100">
         <button
           type="button"
           className="absolute right-4 top-4 rounded-full bg-black p-2 text-white"
@@ -58,6 +58,8 @@ const ResaleProduct = ({ product }) => {
             Publish Time : {time}
           </p>
           <button
+            // onClick={openModal}
+            onClick={() => handleCart(product)}
             type="button"
             className="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
           >
@@ -79,7 +81,7 @@ const ResaleProduct = ({ product }) => {
             </svg>
           </button>
         </div>
-      </a>
+      </div>
     </div>
   );
 };
