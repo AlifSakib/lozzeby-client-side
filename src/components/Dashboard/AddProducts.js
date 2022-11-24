@@ -1,6 +1,15 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
 const AddProducts = () => {
+  const { data: categories = [] } = useQuery({
+    queryKey: ["product-categories"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/product-categories");
+      const data = await res.json();
+      return data;
+    },
+  });
   const handleAddProduct = (e) => {
     e.preventDefault();
 
@@ -20,6 +29,7 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((imageData) => {
         const productDetails = {
+          categoy_id: form.categoy_id.value,
           seller_name: form.name.value,
           product_name: form.profuct_name.value,
           years_of_use: form.year_of_use.value,
@@ -153,7 +163,7 @@ const AddProducts = () => {
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="PasswordConfirmation"
+                    htmlFor="years of use"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Years of use
@@ -166,18 +176,39 @@ const AddProducts = () => {
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                <div className="col-span-12 sm:col-span-6">
-                  <div>
-                    <label htmlFor="image" className="block mb-2 text-sm">
-                      Select Image:
-                    </label>
-                    <input
-                      type="file"
-                      id="image"
-                      name="image"
-                      accept="image/*"
-                    />
-                  </div>
+
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="image"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Product Image:
+                  </label>
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/*"
+                    className="py-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="image"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Chose Category
+                  </label>
+                  <select
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    name="categoy_id"
+                  >
+                    {categories.map((categoy) => (
+                      <option key={categoy._id} value={categoy._id}>
+                        {categoy.title}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4 w-full">
                   <button

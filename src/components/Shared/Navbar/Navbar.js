@@ -21,7 +21,7 @@ const Navbar = () => {
             className="inline-flex items-center mr-8  text-blue-600"
           >
             <svg
-              class="h-8 sm:h-10"
+              className="h-8 sm:h-10"
               viewBox="0 0 28 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
