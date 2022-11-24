@@ -95,8 +95,8 @@ const Sidebar = () => {
                     </li>
 
                     <li>
-                      <a
-                        href=""
+                      <Link
+                        to="/dashboard/my-product"
                         className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                       >
                         <svg
@@ -117,7 +117,7 @@ const Sidebar = () => {
                         <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                           My Products
                         </span>
-                      </a>
+                      </Link>
                     </li>
                   </>
                 )}
