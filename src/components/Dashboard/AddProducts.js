@@ -1,27 +1,59 @@
 import React from "react";
 
 const AddProducts = () => {
+  const handleAddProduct = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const image = e.target.image.files[0];
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const url =
+      "https://api.imgbb.com/1/upload?key=69add8bfda52436fca4352b792ae1d23";
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        const productDetails = {
+          seller_name: form.name.value,
+          product_name: form.profuct_name.value,
+          years_of_use: form.year_of_use.value,
+          product_image: imageData.data.display_url,
+          resale_price: form.resale_price.value,
+          original_price: form.original_price.value,
+          location: form.location.value,
+          time: new Date().toLocaleDateString(),
+        };
+        console.log(productDetails);
+      });
+  };
+
   return (
     <div>
-      <section class="bg-white">
-        <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
-          <aside class="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
+      <section className="bg-white">
+        <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
+          <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
             <img
               alt="Pattern"
               src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-              class="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </aside>
 
           <main
             aria-label="Main"
-            class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
+            className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
           >
-            <div class="max-w-xl lg:max-w-3xl">
-              <a class="block text-blue-600" href="/">
-                <span class="sr-only">Home</span>
+            <div className="max-w-xl lg:max-w-3xl">
+              <a className="block text-blue-600" href="/">
+                <span className="sr-only">Home</span>
                 <svg
-                  class="h-8 sm:h-10"
+                  className="h-8 sm:h-10"
                   viewBox="0 0 28 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -33,62 +65,66 @@ const AddProducts = () => {
                 </svg>
               </a>
 
-              <h1 class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+              <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
                 Welcome to LozzeBy
               </h1>
 
-              <p class="mt-4 leading-relaxed text-gray-500">
+              <p className="mt-4 leading-relaxed text-gray-500">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Eligendi nam dolorum aliquam, quibusdam aperiam voluptatum.
               </p>
 
-              <form action="#" class="mt-8 grid grid-cols-6 gap-6">
-                <div class="col-span-6 sm:col-span-3">
+              <form
+                onSubmit={handleAddProduct}
+                action="#"
+                className="mt-8 grid grid-cols-6 gap-6"
+              >
+                <div className="col-span-6 sm:col-span-3">
                   <label
-                    for="Name"
-                    class="block text-sm font-medium text-gray-700"
+                    htmlFor="Name"
+                    className="block text-sm font-medium text-gray-700"
                   >
                     Your Name
                   </label>
 
                   <input
                     type="text"
-                    name="first_name"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    name="name"
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
 
-                <div class="col-span-6 sm:col-span-3">
+                <div className="col-span-6 sm:col-span-3">
                   <label
-                    for="Location"
-                    class="block text-sm font-medium text-gray-700"
+                    htmlFor="Location"
+                    className="block text-sm font-medium text-gray-700"
                   >
                     Location
                   </label>
                   <input
                     type="text"
                     name="location"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                <div class="col-span-6 sm:col-span-3">
+                <div className="col-span-6 sm:col-span-3">
                   <label
-                    for="Location"
-                    class="block text-sm font-medium text-gray-700"
+                    htmlFor="Location"
+                    className="block text-sm font-medium text-gray-700"
                   >
                     Product Name
                   </label>
                   <input
                     type="text"
                     name="profuct_name"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
 
-                <div class="col-span-6 sm:col-span-3">
+                <div className="col-span-6 sm:col-span-3">
                   <label
-                    for="PasswordConfirmation"
-                    class="block text-sm font-medium text-gray-700"
+                    htmlFor="PasswordConfirmation"
+                    className="block text-sm font-medium text-gray-700"
                   >
                     Resale Price
                   </label>
@@ -97,13 +133,13 @@ const AddProducts = () => {
                     type="text"
                     id="resale_price"
                     name="resale_price"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                <div class="col-span-6 sm:col-span-3">
+                <div className="col-span-6 sm:col-span-3">
                   <label
-                    for="PasswordConfirmation"
-                    class="block text-sm font-medium text-gray-700"
+                    htmlFor="PasswordConfirmation"
+                    className="block text-sm font-medium text-gray-700"
                   >
                     Original Price
                   </label>
@@ -112,13 +148,13 @@ const AddProducts = () => {
                     type="text"
                     id="original_price"
                     name="original_price"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-                <div class="col-span-6 sm:col-span-3">
+                <div className="col-span-6 sm:col-span-3">
                   <label
-                    for="PasswordConfirmation"
-                    class="block text-sm font-medium text-gray-700"
+                    htmlFor="PasswordConfirmation"
+                    className="block text-sm font-medium text-gray-700"
                   >
                     Years of use
                   </label>
@@ -127,52 +163,29 @@ const AddProducts = () => {
                     type="text"
                     id="year_of_use"
                     name="year_of_use"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
-
-                <div class="col-span-6">
-                  <label for="MarketingAccept" class="flex gap-4">
+                <div className="col-span-12 sm:col-span-6">
+                  <div>
+                    <label htmlFor="image" className="block mb-2 text-sm">
+                      Select Image:
+                    </label>
                     <input
-                      type="checkbox"
-                      id="MarketingAccept"
-                      name="marketing_accept"
-                      class="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept="image/*"
                     />
-
-                    <span class="text-sm text-gray-700">
-                      I want to receive emails about events, product updates and
-                      company announcements.
-                    </span>
-                  </label>
+                  </div>
                 </div>
-
-                <div class="col-span-6">
-                  <p class="text-sm text-gray-500">
-                    By creating an account, you agree to our
-                    <a href="#" class="text-gray-700 underline">
-                      terms and conditions
-                    </a>
-                    and
-                    <a href="#" class="text-gray-700 underline">
-                      privacy policy
-                    </a>
-                    .
-                  </p>
-                </div>
-
-                <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <button class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
-                    Create an account
+                <div className="col-span-6 sm:flex sm:items-center sm:gap-4 w-full">
+                  <button
+                    type="submit"
+                    className="w-full inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                  >
+                    Add Product
                   </button>
-
-                  <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                    Already have an account?
-                    <a href="#" class="text-gray-700 underline">
-                      Log in
-                    </a>
-                    .
-                  </p>
                 </div>
               </form>
             </div>
