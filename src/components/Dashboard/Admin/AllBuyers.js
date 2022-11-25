@@ -16,7 +16,7 @@ const AllBuyers = () => {
         <span className="relative px-1">
           <div className="absolute inset-x-0 bottom-0 h-3 transform -skew-x-12 bg-teal-accent-400" />
           <span className="relative inline-block text-deep-purple-accent-400 text-5xl font-bold">
-            All Sellers
+            All Buyers
           </span>
         </span>
       </div>

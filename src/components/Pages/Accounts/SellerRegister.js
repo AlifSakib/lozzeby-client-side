@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const SellerRegister = () => {
   const { userRegister, userProfileUpdate } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   const handleRegister = (data) => {
     const name = data.name;
@@ -33,7 +34,11 @@ const SellerRegister = () => {
       .then((result) => {
         toast.success("Seller account created");
         userProfileUpdate({ displayName: name })
-          .then(() => toast.success(`Wellcome ${data.name}`))
+          .then((result) => {
+            toast.success(`Wellcome ${data.name}`);
+            navigate("/");
+          })
+
           .catch((error) =>
             toast.success("Somthing wrong , Please contact us")
           );

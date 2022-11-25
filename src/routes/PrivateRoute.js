@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { MoonLoader } from "react-spinners";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const PrivateRoute = ({ children }) => {
@@ -7,9 +8,13 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div className="flex justify-center items-center h-screen w-screen">
+        <MoonLoader color="rgba(105, 54, 214, 1)" speedMultiplier={0.7} />
+      </div>
+    );
   }
-  if (user) {
+  if (user?.email) {
     return children;
   }
   return (

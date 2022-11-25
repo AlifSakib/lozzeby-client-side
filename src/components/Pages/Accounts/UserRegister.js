@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const UserRegister = () => {
   const { userRegister, userProfileUpdate } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm();
   const handleRegister = (data) => {
@@ -23,7 +24,7 @@ const UserRegister = () => {
       .then((result) => {
         toast.success("User account created");
         userProfileUpdate({ displayName: name })
-          .then(() => {
+          .then((result) => {
             toast.success(`Wellcome ${data.name}`);
             fetch("http://localhost:5000/buyers", {
               method: "POST",
@@ -33,11 +34,11 @@ const UserRegister = () => {
               body: JSON.stringify(userDetails),
             })
               .then((res) => res.json())
-              .then((data) => console.log(data));
+              .then((data) => {
+                navigate("/");
+              });
           })
-          .catch((error) =>
-            toast.success("Somthing wrong , Please contact us")
-          );
+          .catch((error) => toast.error("Somthing wrong , Please contact us"));
       })
       .catch((error) => toast.error("Account creation failed"));
   };

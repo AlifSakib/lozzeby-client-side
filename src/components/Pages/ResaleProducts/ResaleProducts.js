@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
 import BookingModal from "./BookingModal";
 import ResaleProduct from "./ResaleProduct";
 
 const ResaleProducts = () => {
+  const { user, setLoading } = useContext(AuthContext);
   const products = useLoaderData();
+
   console.log(products);
 
   const [selectedProduct, setSelectedProduct] = useState([]);
