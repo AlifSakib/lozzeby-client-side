@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 
 const AllSellers = () => {
-  const { data: allsellers = [] } = useQuery({
+  const { data: allsellers = [], refetch } = useQuery({
     queryKey: ["allsellers"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/all-sellers");
@@ -10,6 +11,19 @@ const AllSellers = () => {
       return data;
     },
   });
+
+  const handleDeleteSeller = (id) => {
+    fetch(`http://localhost:5000/users/sellers/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Seller Account Deleted");
+          refetch();
+        }
+      });
+  };
 
   return (
     <div className="px-8 py-16 mx-auto ">
@@ -99,9 +113,11 @@ const AllSellers = () => {
                 </td>
 
                 <td className="whitespace-nowrap px-4 py-2">
-                  <strong className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700">
-                    Delete
-                  </strong>
+                  <button onClick={() => handleDeleteSeller(allseller._id)}>
+                    <strong className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700">
+                      Delete
+                    </strong>
+                  </button>
                 </td>
               </tr>
             ))}
