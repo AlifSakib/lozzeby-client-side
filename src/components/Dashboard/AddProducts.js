@@ -46,6 +46,7 @@ const AddProducts = () => {
           product_status: "Not Verified",
           seller_phone: form.phone_number.value,
           description: form.description.value,
+          sell_status: "Available",
         };
 
         fetch("http://localhost:5000/add-product", {

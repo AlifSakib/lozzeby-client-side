@@ -5,7 +5,7 @@ import MyProduct from "./MyProduct";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  const { data: products = [] } = useQuery({
+  const { data: products = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch(
@@ -31,7 +31,11 @@ const MyProducts = () => {
 
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4">
             {products.map((product) => (
-              <MyProduct key={product._id} product={product}></MyProduct>
+              <MyProduct
+                key={product._id}
+                product={product}
+                refetch={refetch}
+              ></MyProduct>
             ))}
           </div>
         </div>
