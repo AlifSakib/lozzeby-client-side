@@ -1,5 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddProducts from "../components/Dashboard/AddProducts";
+import AllBuyers from "../components/Dashboard/Admin/AllBuyers";
+import AllSellers from "../components/Dashboard/Admin/AllSellers";
+import ReportedItems from "../components/Dashboard/Admin/ReportedItems";
 import DashboardHome from "../components/Dashboard/DashboardHome";
 import MyOrders from "../components/Dashboard/MyOrders";
 import MyProducts from "../components/Dashboard/MyProducts";
@@ -10,6 +13,7 @@ import UsersLogin from "../components/Pages/Accounts/UsersLogin";
 import ResaleProducts from "../components/Pages/ResaleProducts/ResaleProducts";
 import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
+import AdminRoute from "./AdminRoute";
 import BuyerRoutes from "./BuyerRoutes";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoutes from "./SellerRoutes";
@@ -50,11 +54,19 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "",
-        element: <DashboardHome></DashboardHome>,
+        element: (
+          <PrivateRoute>
+            <DashboardHome></DashboardHome>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-order",
@@ -78,6 +90,30 @@ export const router = createBrowserRouter([
           <SellerRoutes>
             <MyProducts></MyProducts>
           </SellerRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/all-sellers",
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/all-buyers",
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/reported-items",
+        element: (
+          <AdminRoute>
+            <ReportedItems></ReportedItems>
+          </AdminRoute>
         ),
       },
     ],
