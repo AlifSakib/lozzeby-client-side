@@ -10,6 +10,8 @@ import Home from "../components/Home/Home";
 import SellerRegister from "../components/Pages/Accounts/SellerRegister";
 import UserRegister from "../components/Pages/Accounts/UserRegister";
 import UsersLogin from "../components/Pages/Accounts/UsersLogin";
+import Blogs from "../components/Pages/Blog/Blogs";
+import ErrorPage from "../components/Pages/ErrorPage/ErrorPage";
 import ResaleProducts from "../components/Pages/ResaleProducts/ResaleProducts";
 import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
@@ -22,7 +24,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    errorElement: "Error",
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -50,6 +52,10 @@ export const router = createBrowserRouter([
         loader: async ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
       },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
+      },
     ],
   },
   {
@@ -59,6 +65,7 @@ export const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </PrivateRoute>
     ),
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "",
