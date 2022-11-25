@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MyOrder = ({ order }) => {
   const { product_name, product_image, product_price } = order;
+
   return (
     <div>
       <div className="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -19,9 +21,18 @@ const MyOrder = ({ order }) => {
 
         <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
           <h1 className="text-lg font-bold text-white">${product_price}</h1>
-          <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
-            Pay Now
-          </button>
+          {order.payment_status ? (
+            <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-green-500 rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">
+              Paid
+            </button>
+          ) : (
+            <Link
+              to={`/dashboard/payment/${order._id}`}
+              className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none"
+            >
+              Pay Now
+            </Link>
+          )}
         </div>
       </div>
     </div>

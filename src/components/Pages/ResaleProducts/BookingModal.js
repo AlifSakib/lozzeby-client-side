@@ -156,7 +156,7 @@ const BookingModal = ({
                         <input
                           type="text"
                           id="Product-Price"
-                          defaultValue={`${resale_price}$`}
+                          defaultValue={`${resale_price}`}
                           disabled
                           placeholder="john@rhcp.com"
                           className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"

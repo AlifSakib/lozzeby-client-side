@@ -6,6 +6,7 @@ import ReportedItems from "../components/Dashboard/Admin/ReportedItems";
 import DashboardHome from "../components/Dashboard/DashboardHome";
 import MyOrders from "../components/Dashboard/MyOrders";
 import MyProducts from "../components/Dashboard/MyProducts";
+import Payment from "../components/Dashboard/Payment";
 import Home from "../components/Home/Home";
 import SellerRegister from "../components/Pages/Accounts/SellerRegister";
 import UserRegister from "../components/Pages/Accounts/UserRegister";
@@ -122,6 +123,12 @@ export const router = createBrowserRouter([
             <ReportedItems></ReportedItems>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/user/order/${params.id}`),
+        element: <Payment></Payment>,
       },
     ],
   },
