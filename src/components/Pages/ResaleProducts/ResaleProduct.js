@@ -1,4 +1,5 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 const ResaleProduct = ({ product, openModal, handleCart }) => {
   const {
@@ -11,6 +12,22 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
     time,
     seller_name,
   } = product;
+
+  const handleReport = (product) => {
+    fetch("http://localhost:5000/reported-products", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Product Reported");
+        }
+      });
+  };
   return (
     <div>
       <div className="relative block border border-gray-100">
@@ -35,10 +52,11 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
           </svg>
         </button>
         <button
+          onClick={() => handleReport(product)}
           type="button"
           className="absolute right-4 top-14 rounded-full bg-red-500 hover:bg-red-600 p-2 text-white"
         >
-          <span className="sr-only">Wishlist</span>
+          <span className="sr-only">Report Item</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -68,34 +86,36 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
         <img
           alt="Toy"
           src={product_image}
-          className="h-full w-full object-contain"
+          className="h-64 w-full object-cover"
         />
 
-        <div className="p-6">
-          <h3 className="mt-1 text-2xl font-bold">{product_name}</h3>
-          <p className="text-sm font-medium text-gray-600">
-            Resale Price : {resale_price}$
-          </p>
-          <p className="text-sm font-medium text-gray-600">
-            Original Price : {original_price}$
-          </p>
-          <p className="text-sm font-medium text-gray-600">
-            Location : {location}
-          </p>
-          <p className="text-sm font-medium text-gray-600">
-            Used : {years_of_use} Year
-          </p>
-          <p className="text-sm font-medium text-gray-600">
-            Seller Name : {seller_name}
-          </p>
-          <p className="text-sm font-medium text-gray-600">
-            Publish Time : {time}
-          </p>
+        <div className="">
+          <div className="px-4 py-2 ">
+            <h3 className="mt-1 text-xl font-bold">{product_name}</h3>
+            <p className="text-sm font-medium text-gray-600">
+              Resale Price : {resale_price}$
+            </p>
+            <p className="text-sm font-medium text-gray-600">
+              Original Price : {original_price}$
+            </p>
+            <p className="text-sm font-medium text-gray-600">
+              Location : {location}
+            </p>
+            <p className="text-sm font-medium text-gray-600">
+              Used : {years_of_use} Year
+            </p>
+            <p className="text-sm font-medium text-gray-600">
+              Seller Name : {seller_name}
+            </p>
+            <p className="text-sm font-medium text-gray-600">
+              Publish Time : {time}
+            </p>
+          </div>
           <button
             // onClick={openModal}
             onClick={() => handleCart(product)}
             type="button"
-            className="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-500 px-8 py-4"
+            className="mt-4 flex w-full items-center justify-center text-white rounded-sm bg-sky-500 px-8 py-4"
           >
             <span className="text-sm font-medium"> Add to Cart </span>
 

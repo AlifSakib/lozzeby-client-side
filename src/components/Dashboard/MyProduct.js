@@ -70,7 +70,7 @@ const MyProduct = ({ product, refetch }) => {
       });
   };
   return (
-    <div>
+    <div className="relative h-[500px]">
       {/* <a href="#" className="relative block border border-gray-100">
         <button
           type="button"
@@ -167,44 +167,49 @@ const MyProduct = ({ product, refetch }) => {
             {product.product_name}
           </h1>
 
-          <div className="mt-2 space-x-4">
-            <button onClick={() => handleProductAvailable(product)}>
-              <div>
-                <p className="inline-block px-3 py-2 mb-4 text-xs font-semibold tracking-wider text-white uppercase  bg-green-600 hover:bg-green-800 rounded-md">
-                  Available
-                </p>
-              </div>
-            </button>
-            <button onClick={() => handleProductSold(product)}>
-              <div>
-                <p className="inline-block px-3 py-2 mb-4 text-xs font-semibold tracking-wider text-white uppercase  bg-red-600 hover:bg-red-800 rounded-md">
-                  Sold
-                </p>
+          <div className="absolute bottom-3">
+            <div className="mt-2 space-x-4">
+              <button onClick={() => handleProductAvailable(product)}>
+                <div>
+                  <p className="inline-block px-3 py-2 mb-4 text-xs font-semibold tracking-wider text-white uppercase  bg-green-600 hover:bg-green-800 rounded-md">
+                    Available
+                  </p>
+                </div>
+              </button>
+              <button onClick={() => handleProductSold(product)}>
+                <div>
+                  <p className="inline-block px-3 py-2 mb-4 text-xs font-semibold tracking-wider text-white uppercase  bg-red-600 hover:bg-red-800 rounded-md">
+                    Sold
+                  </p>
+                </div>
+              </button>
+            </div>
+            <button
+              onClick={() => handleDelete(product._id)}
+              className="w-full"
+            >
+              <div className="flex items-center px-6 py-3 bg-red-600 hover:bg-red-800 rounded-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-8 h-8 text-white"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+
+                <h1 className="mx-3 text-lg font-semibold text-white">
+                  Delete Product
+                </h1>
               </div>
             </button>
           </div>
-          <button onClick={() => handleDelete(product._id)} className="w-full">
-            <div className="flex items-center px-6 py-3 bg-red-600 hover:bg-red-800 rounded-md">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-8 h-8 text-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-
-              <h1 className="mx-3 text-lg font-semibold text-white">
-                Delete Product
-              </h1>
-            </div>
-          </button>
         </div>
       </div>
     </div>
