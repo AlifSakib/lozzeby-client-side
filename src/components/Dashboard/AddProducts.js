@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -15,6 +15,16 @@ const AddProducts = () => {
       return data;
     },
   });
+
+  const [currentSeller, setCurrentSeller] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/seller/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCurrentSeller(data);
+      });
+  }, [user?.email]);
+
   const handleAddProduct = (e) => {
     e.preventDefault();
 
@@ -49,6 +59,7 @@ const AddProducts = () => {
           seller_phone: form.phone_number.value,
           description: form.description.value,
           sell_status: "Available",
+          verifyed: currentSeller.verifyed,
         };
 
         fetch("http://localhost:5000/add-product", {

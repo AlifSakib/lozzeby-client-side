@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 
 const MyProduct = ({ product, refetch }) => {
   const { product_image } = product;
+  console.log(product);
 
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/users/seller/my-product/${id}`, {

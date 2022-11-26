@@ -11,8 +11,6 @@ const ResaleProducts = () => {
   const { user, setLoading } = useContext(AuthContext);
   const products = useLoaderData();
 
-  console.log(products);
-
   const [selectedProduct, setSelectedProduct] = useState([]);
   let [isOpen, setIsOpen] = useState(false);
 

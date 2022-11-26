@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const CheckoutForm = ({ order }) => {
-  const { product_price, name, email, _id } = order;
+  const { product_price, name, email, _id, product_id } = order;
+  console.log(product_id);
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [paymentProcessing, setPaymentProcessing] = useState(false);
@@ -86,20 +87,46 @@ const CheckoutForm = ({ order }) => {
           if (data.success) {
             setSuccess("Payment Complete 🎉");
             setTransactionId(paymentIntent.id);
-            fetch(`http://localhost:5000/order/paid/${order.product_id}`, {
-              method: "DELETE",
-            })
+            fetch(
+              `http://localhost:5000/resale-products/payment_status/${product_id}`,
+              {
+                method: "PUT",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(),
+              }
+            )
               .then((res) => res.json())
               .then((data) => {
-                if (data.success) {
-                  toast.success("Congratulations !!!");
-                }
+                fetch(`http://localhost:5000/order/paid/${order.product_id}`, {
+                  method: "DELETE",
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    if (data.success) {
+                      toast.success("Congratulations !!!");
+                    }
+                  });
               });
           }
         });
     }
     setPaymentProcessing(false);
   };
+
+  // fetch(
+  //   `http://localhost:5000/resale-products/payment_status/${product_id}`,
+  //   {
+  //     method: "PUT",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(),
+  //   }
+  // )
+  //   .then((res) => res.json())
+  //   .then((data) => console.log(data));
 
   return (
     <div>

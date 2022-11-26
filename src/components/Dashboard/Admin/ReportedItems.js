@@ -1,6 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 
 const ReportedItems = () => {
+  const { data: reportedProducts = [], refetch } = useQuery({
+    queryKey: ["reportedProducts"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/reported-product");
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const hadleDelete = (id) => {
+    fetch(`http://localhost:5000/reported-product/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Product Deleted");
+          refetch();
+        }
+      });
+  };
   return (
     <div className="px-8 py-16 mx-auto ">
       <div className="mb-8">
@@ -18,7 +41,7 @@ const ReportedItems = () => {
             <tr>
               <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
                 <div className="flex items-center gap-2">
-                  Name
+                  Product Name
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4 text-gray-700"
@@ -35,7 +58,7 @@ const ReportedItems = () => {
               </th>
               <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
                 <div className="flex items-center gap-2">
-                  Email
+                  Seller Name
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4 text-gray-700"
@@ -53,7 +76,7 @@ const ReportedItems = () => {
 
               <th className="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900">
                 <div className="flex items-center gap-2">
-                  Role
+                  Seller Email
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4 text-gray-700"
@@ -75,24 +98,31 @@ const ReportedItems = () => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            <tr>
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                #00001
-              </td>
+            {reportedProducts.map((reportedproduct) => (
+              <tr key={reportedproduct._id}>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  {reportedproduct?.product_name}
+                </td>
 
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                John Frusciante
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                john@rhcp.com
-              </td>
+                <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                  {reportedproduct?.seller_name}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                  {reportedproduct?.seller_email}
+                </td>
 
-              <td className="whitespace-nowrap px-4 py-2">
-                <strong className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700">
-                  Cancelled
-                </strong>
-              </td>
-            </tr>
+                <td className="whitespace-nowrap px-4 py-2">
+                  <button>
+                    <strong
+                      onClick={() => hadleDelete(reportedproduct._id)}
+                      className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700"
+                    >
+                      Delete Product
+                    </strong>
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
