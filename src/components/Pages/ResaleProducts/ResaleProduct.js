@@ -77,7 +77,7 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
           </button>
           <div className="absolute left-2 top-2">
             <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-              {product.sell_status}
+              {product.product_sold ? "Sold" : "Available"}
             </p>
           </div>
           <div className="absolute left-2 top-8">

@@ -135,7 +135,7 @@ const MyProduct = ({ product, refetch }) => {
           alt="avatar"
         />
 
-        {product?.sell_status === "Available" && (
+        {!product?.product_sold && (
           <button
             onClick={() => handleProductAdvertise(product)}
             className="w-full"
@@ -173,17 +173,17 @@ const MyProduct = ({ product, refetch }) => {
               <button onClick={() => handleProductAvailable(product)}>
                 <div>
                   <p className="inline-block px-3 py-2 mb-4 text-xs font-semibold tracking-wider text-white uppercase  bg-green-600 hover:bg-green-800 rounded-md">
-                    Available
+                    Mark as Available
                   </p>
                 </div>
               </button>
-              <button onClick={() => handleProductSold(product)}>
+              {/* <button onClick={() => handleProductSold(product)}>
                 <div>
                   <p className="inline-block px-3 py-2 mb-4 text-xs font-semibold tracking-wider text-white uppercase  bg-red-600 hover:bg-red-800 rounded-md">
                     Sold
                   </p>
                 </div>
-              </button>
+              </button> */}
             </div>
             <button
               onClick={() => handleDelete(product._id)}
