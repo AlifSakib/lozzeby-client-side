@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
+import { MoonLoader } from "react-spinners";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import BookingModal from "./BookingModal";
 import ResaleProduct from "./ResaleProduct";
 
 const ResaleProducts = () => {
+  const navigation = useNavigation();
+
   const { user, setLoading } = useContext(AuthContext);
   const products = useLoaderData();
 
@@ -25,6 +28,14 @@ const ResaleProducts = () => {
     setSelectedProduct(product);
     openModal();
   };
+
+  if (navigation.state === "loading") {
+    return (
+      <div className="flex justify-center items-center h-screen w-screen">
+        <MoonLoader color="rgba(105, 54, 214, 1)" speedMultiplier={0.7} />
+      </div>
+    );
+  }
   return (
     <div>
       <section>

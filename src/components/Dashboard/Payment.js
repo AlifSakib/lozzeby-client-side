@@ -1,7 +1,8 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
+import { MoonLoader } from "react-spinners";
 import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(
@@ -9,6 +10,14 @@ const stripePromise = loadStripe(
 );
 const Payment = () => {
   const order = useLoaderData();
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return (
+      <div className="flex justify-center items-center h-screen w-screen">
+        <MoonLoader color="rgba(105, 54, 214, 1)" speedMultiplier={0.7} />
+      </div>
+    );
+  }
   return (
     <div>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">

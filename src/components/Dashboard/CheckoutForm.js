@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const CheckoutForm = ({ order }) => {
   const { product_price, name, email, _id } = order;
@@ -85,6 +86,15 @@ const CheckoutForm = ({ order }) => {
           if (data.success) {
             setSuccess("Payment Complete 🎉");
             setTransactionId(paymentIntent.id);
+            fetch(`http://localhost:5000/order/paid/${order.product_id}`, {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.success) {
+                  toast.success("Congratulations !!!");
+                }
+              });
           }
         });
     }
