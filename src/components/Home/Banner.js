@@ -8,7 +8,7 @@ const Banner = () => {
         <div className="w-full lg:w-1/2">
           <div className="lg:max-w-lg">
             <h1 className="text-3xl font-bold tracking-wide text-gray-800 dark:text-white lg:text-5xl">
-              Easiest way to create your website
+              Easiest way to Buy & Sell Used Products
             </h1>
 
             <div className="mt-8 space-y-5">
@@ -27,7 +27,7 @@ const Banner = () => {
                   />
                 </svg>
 
-                <span className="mx-2">Clean and Simple Layout</span>
+                <span className="mx-2">Create Account</span>
               </p>
 
               <p className="flex items-center -mx-2 text-gray-700 dark:text-gray-200">
@@ -45,7 +45,7 @@ const Banner = () => {
                   />
                 </svg>
 
-                <span className="mx-2">Just Copy Paste Codeing</span>
+                <span className="mx-2">Easiest Way To Buy Or Sell Product</span>
               </p>
 
               <p className="flex items-center -mx-2 text-gray-700 dark:text-gray-200">
@@ -63,7 +63,7 @@ const Banner = () => {
                   />
                 </svg>
 
-                <span className="mx-2">Easy to Use</span>
+                <span className="mx-2">Easy Payment</span>
               </p>
             </div>
           </div>
