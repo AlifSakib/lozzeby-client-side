@@ -1,4 +1,5 @@
 import React from "react";
+import image from "../../assets/images/image1.jpg";
 
 const Cta = () => {
   return (
@@ -8,42 +9,40 @@ const Cta = () => {
           <div className="flex flex-col justify-center">
             <div className="max-w-xl mb-6">
               <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-                The quick, brown fox
+                There are people who don't like capitalism,
                 <br className="hidden md:block" />
-                jumps over{" "}
+                and people{" "}
                 <span className="relative px-1">
                   <div className="absolute inset-x-0 bottom-0 h-3 transform -skew-x-12 bg-teal-accent-400" />
                   <span className="relative inline-block text-deep-purple-accent-400">
-                    a lazy dog
+                    who don't like PCs.
                   </span>
                 </span>
               </h2>
               <p className="text-base text-gray-700 md:text-lg">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae. explicabo.
+                You’ve got to start with the customer experience and work back
+                toward the technology
               </p>
             </div>
             <div className="grid gap-5 row-gap-8 sm:grid-cols-2">
               <div className="bg-white border-l-4 shadow-sm border-deep-purple-accent-400">
                 <div className="h-full p-5 border border-l-0 rounded-r">
                   <h6 className="mb-2 font-semibold leading-5">
-                    I'll be sure to note that in my log
+                    We provide you trust and security
                   </h6>
                   <p className="text-sm text-gray-900">
-                    Lookout flogging bilge rat main sheet bilge water nipper
-                    fluke to go on account heave down.
+                    Become a seller today and start uploading your unused
+                    product
                   </p>
                 </div>
               </div>
               <div className="bg-white border-l-4 shadow-sm border-deep-purple-accent-400">
                 <div className="h-full p-5 border border-l-0 rounded-r">
                   <h6 className="mb-2 font-semibold leading-5">
-                    A business big enough that it could be listed
+                    We provide you trust and security
                   </h6>
                   <p className="text-sm text-gray-900">
-                    Those options are already baked in with this model shoot me
-                    an email clear.
+                    We care about our members
                   </p>
                 </div>
               </div>
@@ -52,7 +51,7 @@ const Cta = () => {
           <div>
             <img
               className="object-cover w-full h-56 rounded shadow-lg sm:h-96"
-              src="https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
+              src={image}
               alt=""
             />
           </div>
