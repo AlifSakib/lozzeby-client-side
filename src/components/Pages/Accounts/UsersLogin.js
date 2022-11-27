@@ -17,7 +17,7 @@ const UsersLogin = () => {
     if (token) {
       navigate(from, { replace: true });
     }
-  });
+  }, [from, navigate, token]);
 
   const { register, handleSubmit } = useForm();
   const handleLogin = (data) => {

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,9 +12,12 @@ const SellerRegister = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [token] = useToken(email);
-  if (token) {
-    navigate("/");
-  }
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
   const handleRegister = (data) => {
     const name = data.name;
