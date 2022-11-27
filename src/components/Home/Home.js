@@ -4,6 +4,7 @@ import AdvertiseProducts from "../Home/AdvertiseProducts";
 import Banner from "./Banner";
 import Cta from "./Cta";
 import ProductCategories from "./ProductCategories";
+import Testimonial from "./Testimonial";
 
 const Home = () => {
   const { data: products = [], isLoading } = useQuery({
@@ -25,6 +26,7 @@ const Home = () => {
       )}
       <Cta></Cta>
       {/* <Stats></Stats> */}
+      <Testimonial></Testimonial>
     </div>
   );
 };
