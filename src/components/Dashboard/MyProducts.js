@@ -30,7 +30,7 @@ const MyProducts = () => {
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4">
-            {products.map((product) => (
+            {products?.map((product) => (
               <MyProduct
                 key={product._id}
                 product={product}

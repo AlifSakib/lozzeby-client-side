@@ -1,17 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import AdvertiseProduct from "./AdvertiseProduct";
 
-const AdvertiseProducts = () => {
-  const { data: products = [] } = useQuery({
-    queryKey: ["products"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/advertise-products");
-      const data = await res.json();
-      return data;
-    },
-  });
-  console.log(products);
+const AdvertiseProducts = ({ products }) => {
+  // const { data: products = [] } = useQuery({
+  //   queryKey: ["products"],
+  //   queryFn: async () => {
+  //     const res = await fetch("http://localhost:5000/advertise-products", {
+  //       headers: {
+  //         authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+  //       },
+  //     });
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
   return (
     <div>
       {products && (
@@ -25,7 +27,7 @@ const AdvertiseProducts = () => {
             </span>
           </div>
           <div className="grid gap-8 row-gap-5 mb-8 lg:grid-cols-3 lg:row-gap-8">
-            {products.map((product) => (
+            {products?.map((product) => (
               <AdvertiseProduct
                 key={product._id}
                 product={product}

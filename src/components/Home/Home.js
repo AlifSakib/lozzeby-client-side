@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import AdvertiseProducts from "./AdvertiseProducts";
+import AdvertiseProducts from "../Home/AdvertiseProducts";
 import Banner from "./Banner";
 import ProductCategories from "./ProductCategories";
 
 const Home = () => {
-  const { data: products = [] } = useQuery({
+  const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/advertise-products", {
@@ -23,7 +23,10 @@ const Home = () => {
     <div>
       <Banner></Banner>
       <ProductCategories></ProductCategories>
-      {products.length > 0 && <AdvertiseProducts></AdvertiseProducts>}
+
+      {products.length > 0 && (
+        <AdvertiseProducts products={products}></AdvertiseProducts>
+      )}
     </div>
   );
 };
