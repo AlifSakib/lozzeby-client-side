@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import toast from "react-hot-toast";
 
 const ResaleProduct = ({ product, openModal, handleCart }) => {
@@ -16,12 +17,25 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
     seller_email,
   } = product;
 
-  const [isVerifyed, setIsVerifyed] = useState("");
-  useEffect(() => {
-    fetch(`http://localhost:5000/check-seller-status/${seller_email}`)
-      .then((res) => res.json())
-      .then((data) => setIsVerifyed(data));
-  }, [seller_email]);
+  // const [isVerifyed, setIsVerifyed] = useState("");
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/check-seller-status/${seller_email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setIsVerifyed(data));
+  // }, [seller_email]);
+
+  const { data: isVerifyed, refetch } = useQuery({
+    queryKey: ["seller-status", seller_email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/check-seller-status/${seller_email}`
+      );
+      const data = res.json();
+      return data;
+    },
+  });
+
+  refetch();
 
   const handleReport = (product) => {
     fetch("http://localhost:5000/reported-products", {
@@ -100,10 +114,10 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
             className="h-64 w-full object-cover"
           />
 
-          <div className="">
+          <div className="h-full">
             <div className="px-4 py-2 ">
               <h3 className="mt-1 text-xl font-bold">{product_name}</h3>
-              <p className=" px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400 flex items-center">
+              <p className=" px-3 mt-2 py-px h-8 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400 flex items-center">
                 Seller Name : {seller_name}
                 <span className="ml-1">
                   {isVerifyed && (
@@ -113,7 +127,7 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-6 h-6 text-blue-800 bg-blue-accent-100 rounded-full"
+                      className="w-5 h-5 text-sky-100 bg-blue-accent-400 rounded-full"
                     >
                       <path
                         strokeLinecap="round"
@@ -125,21 +139,21 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
                 </span>
               </p>
 
-              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+              <p className="block mt-1 px-3 py-1 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400">
                 Resale Price : {resale_price}$
               </p>
-              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+              <p className="block mt-1 px-3 py-1 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400">
                 Original Price : {original_price}$
               </p>
 
-              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+              <p className="block mt-1 px-3 py-1 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400">
                 Location : {location}
               </p>
-              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+              <p className="block mt-1 px-3 py-1 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400">
                 Used : {years_of_use} Year
               </p>
 
-              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+              <p className="block mt-1 px-3 py-1 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400">
                 Publish Time : {time}
               </p>
             </div>

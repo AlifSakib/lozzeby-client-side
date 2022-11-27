@@ -35,11 +35,45 @@ const UsersLogin = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        toast.success(`Welcome ${user.displayName}`);
-        navigate(from, { replace: true });
+        const userDetails = {
+          name: user.displayName,
+          email: user.email,
+          role: "buyer",
+        };
+        fetch(`http://localhost:5000/buyers/${user?.email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userDetails),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              verifySocialLogin(userDetails?.email);
+              toast.success(`Welcome ${user.displayName}`);
+              navigate(from, { replace: true });
+            }
+          });
       })
       .catch((error) => {
         toast.error("Please try again");
+      });
+  };
+
+  const verifySocialLogin = (email) => {
+    fetch(`http://localhost:5000/check-user-email/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.accessToken) {
+                localStorage.setItem("AccessToken", data.accessToken);
+              }
+            });
+        }
       });
   };
 

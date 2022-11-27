@@ -9,13 +9,8 @@ const Home = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/advertise-products", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
-        },
-      });
+      const res = await fetch("http://localhost:5000/advertise-products");
       const data = await res.json();
-
       return data;
     },
   });

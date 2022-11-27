@@ -38,28 +38,29 @@ const MyProduct = ({ product, refetch }) => {
       });
   };
 
-  const handleProductSold = (product) => {
-    fetch(`http://localhost:5000/users/seller/my-product-sold/${product._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          toast.success("Sell status set as Sold");
-          refetch();
-        }
-      });
-  };
+  // const handleProductSold = (product) => {
+  //   fetch(`http://localhost:5000/users/seller/my-product-sold/${product._id}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.success) {
+  //         toast.success("Sell status set as Sold");
+  //         refetch();
+  //       }
+  //     });
+  // };
 
   const handleProductAdvertise = (product) => {
     fetch("http://localhost:5000/users/seller/my-product-advertise", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
       },
       body: JSON.stringify(product),
     })
@@ -136,7 +137,7 @@ const MyProduct = ({ product, refetch }) => {
         />
         <div className="absolute left-2 top-2">
           <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            {product.sell_status ? "Available" : "Sold"}
+            {product?.product_sold ? "Sold" : "Available"}
           </p>
         </div>
 
