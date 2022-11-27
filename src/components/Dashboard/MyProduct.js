@@ -134,6 +134,11 @@ const MyProduct = ({ product, refetch }) => {
           src={product_image}
           alt="avatar"
         />
+        <div className="absolute left-2 top-2">
+          <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+            {product.sell_status ? "Available" : "Sold"}
+          </p>
+        </div>
 
         {!product?.product_sold && (
           <button
