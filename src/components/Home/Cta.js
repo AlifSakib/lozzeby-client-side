@@ -1,10 +1,9 @@
 import React from "react";
-import image from "../../assets/images/image1.jpg";
 
 const Cta = () => {
   return (
     <div>
-      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20">
+      {/* <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20">
         <div className="grid gap-5 row-gap-8 lg:grid-cols-2">
           <div className="flex flex-col justify-center">
             <div className="max-w-xl mb-6">
@@ -56,7 +55,37 @@ const Cta = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
+      <section class="bg-gray-900 text-white">
+        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex  lg:items-center">
+          <div class="mx-auto max-w-3xl text-center">
+            <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+              Make Money
+              <span class="sm:block"> With Unused Products </span>
+            </h1>
+
+            <p class="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">
+              We believe is Quality and our Customer Satisfaction
+            </p>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                href="/get-started"
+              >
+                Become A Seller Now
+              </a>
+
+              <a
+                class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+                href="/about"
+              >
+                Explore More
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
