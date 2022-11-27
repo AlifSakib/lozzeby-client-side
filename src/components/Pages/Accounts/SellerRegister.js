@@ -1,14 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import useToken from "../../../Hooks/useToken";
 
 const SellerRegister = () => {
   const { userRegister, userProfileUpdate, googleSignIn } =
     useContext(AuthContext);
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [token] = useToken(email);
+  if (token) {
+    navigate("/");
+  }
 
   const handleRegister = (data) => {
     const name = data.name;
@@ -36,8 +42,8 @@ const SellerRegister = () => {
         toast.success("Seller account created");
         userProfileUpdate({ displayName: name })
           .then((result) => {
+            setEmail(email);
             toast.success(`Wellcome ${data.name}`);
-            navigate("/");
           })
 
           .catch((error) =>
@@ -55,9 +61,9 @@ const SellerRegister = () => {
         const userDetails = {
           name: user.displayName,
           email: user.email,
-          role: "seller",
+          role: "buyer",
         };
-        fetch("http://localhost:5000/sellers", {
+        fetch("http://localhost:5000/buyers", {
           method: "POST",
           headers: {
             "content-type": "application/json",

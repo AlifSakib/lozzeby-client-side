@@ -1,14 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import useToken from "../../../Hooks/useToken";
 
 const UsersLogin = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const { userLogin, googleSignIn } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [token] = useToken(email);
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  });
 
   const { register, handleSubmit } = useForm();
   const handleLogin = (data) => {
@@ -17,8 +26,7 @@ const UsersLogin = () => {
 
     userLogin(email, password)
       .then((result) => {
-        navigate(from, { replace: true });
-        toast.success(`Wellcome Back ${result.user.displayName}`);
+        setEmail(email);
       })
       .catch((error) => toast.error("Please Provide the correct information"));
   };

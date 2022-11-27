@@ -9,7 +9,12 @@ const MyOrders = () => {
     queryKey: ["orders"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users/my-orders/${user?.email}`
+        `http://localhost:5000/users/my-orders/${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+          },
+        }
       );
       const data = await res.json();
       return data;

@@ -1,13 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import useToken from "../../../Hooks/useToken";
 
 const UserRegister = () => {
   const { userRegister, userProfileUpdate, googleSignIn } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [token] = useToken(email);
+  if (token) {
+    navigate("/");
+  }
 
   const { register, handleSubmit } = useForm();
   const handleRegister = (data) => {
@@ -36,7 +42,7 @@ const UserRegister = () => {
             })
               .then((res) => res.json())
               .then((data) => {
-                navigate("/");
+                setEmail(email);
               });
           })
           .catch((error) => toast.error("Somthing wrong , Please contact us"));

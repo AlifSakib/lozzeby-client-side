@@ -6,7 +6,11 @@ const AllBuyers = () => {
   const { data: allbuyers = [], refetch } = useQuery({
     queryKey: ["allsellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/all-buyers");
+      const res = await fetch("http://localhost:5000/all-buyers", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
@@ -96,7 +100,7 @@ const AllBuyers = () => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            {allbuyers.map((allbuyer) => (
+            {allbuyers?.map((allbuyer) => (
               <tr key={allbuyer._id} allseller={allbuyers}>
                 <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                   {allbuyer.name}

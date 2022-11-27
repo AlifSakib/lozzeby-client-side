@@ -8,6 +8,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     userLogout();
+    localStorage.clear("AccessToken");
   };
 
   return (
