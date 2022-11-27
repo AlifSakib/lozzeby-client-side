@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const ResaleProduct = ({ product, openModal, handleCart }) => {
@@ -13,7 +13,15 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
     seller_name,
     verifyed,
     product_sold,
+    seller_email,
   } = product;
+
+  const [isVerifyed, setIsVerifyed] = useState("");
+  useEffect(() => {
+    fetch(`http://localhost:5000/check-seller-status/${seller_email}`)
+      .then((res) => res.json())
+      .then((data) => setIsVerifyed(data));
+  }, [seller_email]);
 
   const handleReport = (product) => {
     fetch("http://localhost:5000/reported-products", {
@@ -95,17 +103,17 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
           <div className="">
             <div className="px-4 py-2 ">
               <h3 className="mt-1 text-xl font-bold">{product_name}</h3>
-              <p className="text-lg flex items-center font-medium text-black">
+              <p className=" px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400 flex items-center">
                 Seller Name : {seller_name}
                 <span className="ml-1">
-                  {verifyed && (
+                  {isVerifyed && (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-6 h-6 text-blue-800"
+                      className="w-6 h-6 text-blue-800 bg-blue-accent-100 rounded-full"
                     >
                       <path
                         strokeLinecap="round"
@@ -116,16 +124,24 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
                   )}
                 </span>
               </p>
-              <p className="text-sm font-medium ">
+
+              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
                 Resale Price : {resale_price}$
               </p>
-              <p className="text-sm font-medium ">
+              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
                 Original Price : {original_price}$
               </p>
-              <p className="text-sm font-medium ">Location : {location}</p>
-              <p className="text-sm font-medium ">Used : {years_of_use} Year</p>
 
-              <p className="text-sm font-medium ">Publish Time : {time}</p>
+              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+                Location : {location}
+              </p>
+              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+                Used : {years_of_use} Year
+              </p>
+
+              <p className="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+                Publish Time : {time}
+              </p>
             </div>
             <button
               // onClick={openModal}
