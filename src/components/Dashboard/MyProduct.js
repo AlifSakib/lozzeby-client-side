@@ -182,7 +182,10 @@ const MyProduct = ({ product, refetch }) => {
 
           <div className="absolute bottom-3">
             <div className="mt-2 space-x-4">
-              <button onClick={() => handleProductAvailable(product)}>
+              <button
+                onClick={() => handleProductAvailable(product)}
+                disabled={!product?.product_sold}
+              >
                 <div>
                   <p className="inline-block px-3 py-2 mb-4 text-xs font-semibold tracking-wider text-white uppercase  bg-green-600 hover:bg-green-800 rounded-md">
                     Mark as Available

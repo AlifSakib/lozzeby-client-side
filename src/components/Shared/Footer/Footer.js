@@ -17,7 +17,7 @@ const Footer = () => {
                       href="/"
                       className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
                     >
-                      News
+                      Graphics Card
                     </a>
                   </li>
                   <li>
@@ -25,7 +25,7 @@ const Footer = () => {
                       href="/"
                       className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
                     >
-                      World
+                      Cooler CPU
                     </a>
                   </li>
                   <li>
@@ -33,7 +33,7 @@ const Footer = () => {
                       href="/"
                       className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
                     >
-                      Games
+                      Desktop Ram
                     </a>
                   </li>
                   <li>
@@ -48,7 +48,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-medium tracking-wide text-gray-300">
-                  Apples
+                  Article
                 </p>
                 <ul className="mt-2 space-y-2">
                   <li>
@@ -95,7 +95,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-medium tracking-wide text-gray-300">
-                  Cherry
+                  Magazine
                 </p>
                 <ul className="mt-2 space-y-2">
                   <li>
@@ -199,14 +199,13 @@ const Footer = () => {
                 </button>
               </form>
               <p className="mt-4 text-sm text-gray-500">
-                Bacon ipsum dolor amet short ribs pig sausage prosciuto chicken
-                spare ribs salami.
+                Thanks for subscribe.
               </p>
             </div>
           </div>
           <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
             <p className="text-sm text-gray-500">
-              © Copyright 2020 Lorem Inc. All rights reserved.
+              © Copyright 2022 LozzeBy.com, @AlifSakib. All rights reserved.
             </p>
             <div className="flex items-center mt-4 space-x-4 sm:mt-0">
               <a

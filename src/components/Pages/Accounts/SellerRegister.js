@@ -50,12 +50,12 @@ const SellerRegister = () => {
           .then((result) => {
             setEmail(email);
             toast.success(`Wellcome ${data.name}`);
-            setLoading(false);
           })
 
-          .catch((error) =>
-            toast.success("Somthing wrong , Please contact us")
-          );
+          .catch((error) => {
+            toast.success("Somthing wrong , Please contact us");
+            setLoading(false);
+          });
       })
       .catch((error) => toast.error("Account creation failed"));
   };
