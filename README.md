@@ -1,6 +1,12 @@
+### adminEmail: admin@admin.com
+
+### adminPassword: 123456
+
 ## LozzeBy
 
 # Live Site : https://lozzeby.web.app/
+
+# Server Link : https://lozzeby-server-side.vercel.app/
 
 ![LozzeBy](https://user-images.githubusercontent.com/61325788/204178623-e157ec28-e4a5-40d6-a660-661d5f55c427.png)
 
