@@ -7,7 +7,6 @@ import ResaleProduct from "./ResaleProduct";
 
 const ResaleProducts = () => {
   const navigation = useNavigation();
-
   const { user, setLoading } = useContext(AuthContext);
   const products = useLoaderData();
 

@@ -165,13 +165,23 @@ const CheckoutForm = ({ order }) => {
         {/* <button type="submit" disabled={!stripe}>
           Pay
         </button> */}
-        <button
-          type="submit"
-          disabled={!stripe || !clientSecret || paymentProcessing}
-          className="mt-5 w-64 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-        >
-          Pay
-        </button>
+        {!success ? (
+          <button
+            type="submit"
+            disabled={!stripe || !clientSecret || paymentProcessing}
+            className="mt-5 w-64 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+          >
+            {paymentProcessing ? "Payment Processing..." : "Pay"}
+          </button>
+        ) : (
+          <button
+            type="submit"
+            disabled
+            className="mt-5 w-64 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+          >
+            Paid
+          </button>
+        )}
         {success && (
           <>
             <p className="inline-block mt-3 px-3 py-2 mb-2 text-xs font-semibold tracking-wider text-teal-800 uppercase rounded-md bg-green-200">

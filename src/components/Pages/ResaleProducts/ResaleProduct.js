@@ -12,9 +12,9 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
     years_of_use,
     time,
     seller_name,
-    verifyed,
     product_sold,
     seller_email,
+    product_condition,
   } = product;
 
   // const [isVerifyed, setIsVerifyed] = useState("");
@@ -152,6 +152,9 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
               <p className="block mt-1 px-3 py-1 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400">
                 Used : {years_of_use} Year
               </p>
+              <p className="block mt-1 px-3 py-1 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400">
+                Condition : {product_condition}
+              </p>
 
               <p className="block mt-1 px-3 py-1 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-md bg-teal-accent-400">
                 Publish Time : {time}
@@ -161,7 +164,7 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
               // onClick={openModal}
               onClick={() => handleCart(product)}
               type="button"
-              className="mt-4 flex w-full items-center justify-center text-white rounded-sm bg-sky-500 px-8 py-4"
+              className="mt-4 flex w-full items-center justify-center text-white rounded-sm bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 px-8 py-4"
             >
               <span className="text-sm font-medium"> Add to Cart </span>
 
