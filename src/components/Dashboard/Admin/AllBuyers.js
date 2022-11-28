@@ -6,18 +6,21 @@ const AllBuyers = () => {
   const { data: allbuyers = [], refetch } = useQuery({
     queryKey: ["allsellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/all-buyers", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://lozzeby-server-side.vercel.app/all-buyers",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleDeleteBuyers = (id) => {
-    fetch(`http://localhost:5000/users/buyers/delete/${id}`, {
+    fetch(`https://lozzeby-server-side.vercel.app/users/buyers/delete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

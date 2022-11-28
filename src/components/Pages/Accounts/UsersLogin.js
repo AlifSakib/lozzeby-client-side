@@ -46,7 +46,7 @@ const UsersLogin = () => {
           email: user.email,
           role: "buyer",
         };
-        fetch(`http://localhost:5000/buyers/${user?.email}`, {
+        fetch(`https://lozzeby-server-side.vercel.app/buyers/${user?.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -68,11 +68,11 @@ const UsersLogin = () => {
   };
 
   const verifySocialLogin = (email) => {
-    fetch(`http://localhost:5000/check-user-email/${email}`)
+    fetch(`https://lozzeby-server-side.vercel.app/check-user-email/${email}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          fetch(`http://localhost:5000/jwt?email=${email}`)
+          fetch(`https://lozzeby-server-side.vercel.app/jwt?email=${email}`)
             .then((res) => res.json())
             .then((data) => {
               if (data.accessToken) {

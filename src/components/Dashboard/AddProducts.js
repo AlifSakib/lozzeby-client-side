@@ -12,7 +12,9 @@ const AddProducts = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["product-categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/product-categories");
+      const res = await fetch(
+        "https://lozzeby-server-side.vercel.app/product-categories"
+      );
       const data = await res.json();
       return data;
     },
@@ -20,7 +22,7 @@ const AddProducts = () => {
 
   const [currentSeller, setCurrentSeller] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/seller/${user?.email}`)
+    fetch(`https://lozzeby-server-side.vercel.app/seller/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCurrentSeller(data);
@@ -64,7 +66,7 @@ const AddProducts = () => {
           verifyed: currentSeller.verifyed,
         };
 
-        fetch("http://localhost:5000/add-product", {
+        fetch("https://lozzeby-server-side.vercel.app/add-product", {
           method: "POST",
           headers: {
             "content-type": "application/json",

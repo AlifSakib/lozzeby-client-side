@@ -7,7 +7,9 @@ const ProductCategories = () => {
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["product-categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/product-categories");
+      const res = await fetch(
+        "https://lozzeby-server-side.vercel.app/product-categories"
+      );
       const data = await res.json();
       return data;
     },

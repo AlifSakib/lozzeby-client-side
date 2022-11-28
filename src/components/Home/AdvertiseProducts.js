@@ -5,7 +5,7 @@ const AdvertiseProducts = ({ products }) => {
   // const { data: products = [] } = useQuery({
   //   queryKey: ["products"],
   //   queryFn: async () => {
-  //     const res = await fetch("http://localhost:5000/advertise-products", {
+  //     const res = await fetch("https://lozzeby-server-side.vercel.app/advertise-products", {
   //       headers: {
   //         authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
   //       },

@@ -9,7 +9,7 @@ const MyProducts = () => {
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users/seller/products/${user?.email}`
+        `https://lozzeby-server-side.vercel.app/users/seller/products/${user?.email}`
       );
       const data = await res.json();
       return data;

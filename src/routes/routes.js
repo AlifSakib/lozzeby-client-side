@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(`https://lozzeby-server-side.vercel.app/category/${params.id}`),
       },
       {
         path: "/blogs",
@@ -127,7 +127,9 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/payment/:id",
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/user/order/${params.id}`),
+          fetch(
+            `https://lozzeby-server-side.vercel.app/user/order/${params.id}`
+          ),
         element: <Payment></Payment>,
       },
     ],

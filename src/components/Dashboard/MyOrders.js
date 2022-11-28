@@ -9,7 +9,7 @@ const MyOrders = () => {
     queryKey: ["orders"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users/my-orders/${user?.email}`,
+        `https://lozzeby-server-side.vercel.app/users/my-orders/${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("AccessToken")}`,

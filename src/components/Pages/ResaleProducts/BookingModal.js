@@ -36,7 +36,7 @@ const BookingModal = ({
       seller_phone,
     };
 
-    fetch("http://localhost:5000/buyer-orders", {
+    fetch("https://lozzeby-server-side.vercel.app/buyer-orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

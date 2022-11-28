@@ -19,7 +19,7 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
 
   // const [isVerifyed, setIsVerifyed] = useState("");
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/check-seller-status/${seller_email}`)
+  //   fetch(`https://lozzeby-server-side.vercel.app/check-seller-status/${seller_email}`)
   //     .then((res) => res.json())
   //     .then((data) => setIsVerifyed(data));
   // }, [seller_email]);
@@ -28,7 +28,7 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
     queryKey: ["seller-status", seller_email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/check-seller-status/${seller_email}`
+        `https://lozzeby-server-side.vercel.app/check-seller-status/${seller_email}`
       );
       const data = res.json();
       return data;
@@ -38,7 +38,7 @@ const ResaleProduct = ({ product, openModal, handleCart }) => {
   refetch();
 
   const handleReport = (product) => {
-    fetch("http://localhost:5000/reported-products", {
+    fetch("https://lozzeby-server-side.vercel.app/reported-products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

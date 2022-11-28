@@ -6,14 +6,16 @@ const AllSellers = () => {
   const { data: allsellers = [], refetch } = useQuery({
     queryKey: ["allsellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/all-sellers");
+      const res = await fetch(
+        "https://lozzeby-server-side.vercel.app/all-sellers"
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleDeleteSeller = (id) => {
-    fetch(`http://localhost:5000/users/sellers/delete/${id}`, {
+    fetch(`https://lozzeby-server-side.vercel.app/users/sellers/delete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -26,7 +28,7 @@ const AllSellers = () => {
   };
 
   const handleVerify = (id) => {
-    fetch(`http://localhost:5000/seller/verify/${id}`, {
+    fetch(`https://lozzeby-server-side.vercel.app/seller/verify/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

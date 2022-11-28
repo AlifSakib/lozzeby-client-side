@@ -7,7 +7,7 @@ const MyOrder = ({ order }) => {
   const [currentProduct, setCurrentProduct] = useState([]);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/buyer-order/product-detail/${order?.product_id}`
+      `https://lozzeby-server-side.vercel.app/buyer-order/product-detail/${order?.product_id}`
     )
       .then((res) => res.json())
       .then((data) => setCurrentProduct(data.result));

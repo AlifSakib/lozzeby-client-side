@@ -15,7 +15,7 @@ const CheckoutForm = ({ order }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://lozzeby-server-side.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,20 +75,23 @@ const CheckoutForm = ({ order }) => {
         order_id: _id,
       };
 
-      fetch("http://localhost:5000/user/order/payment-details", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(paymentDetails),
-      })
+      fetch(
+        "https://lozzeby-server-side.vercel.app/user/order/payment-details",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(paymentDetails),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {
             setSuccess("Payment Complete 🎉");
             setTransactionId(paymentIntent.id);
             fetch(
-              `http://localhost:5000/resale-products/payment_status/${product_id}`,
+              `https://lozzeby-server-side.vercel.app/resale-products/payment_status/${product_id}`,
               {
                 method: "PUT",
                 headers: {
@@ -99,9 +102,12 @@ const CheckoutForm = ({ order }) => {
             )
               .then((res) => res.json())
               .then((data) => {
-                fetch(`http://localhost:5000/order/paid/${order.product_id}`, {
-                  method: "DELETE",
-                })
+                fetch(
+                  `https://lozzeby-server-side.vercel.app/order/paid/${order.product_id}`,
+                  {
+                    method: "DELETE",
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => {
                     if (data.success) {
@@ -116,7 +122,7 @@ const CheckoutForm = ({ order }) => {
   };
 
   // fetch(
-  //   `http://localhost:5000/resale-products/payment_status/${product_id}`,
+  //   `https://lozzeby-server-side.vercel.app/resale-products/payment_status/${product_id}`,
   //   {
   //     method: "PUT",
   //     headers: {

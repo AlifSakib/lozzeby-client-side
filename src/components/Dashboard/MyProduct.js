@@ -6,9 +6,12 @@ const MyProduct = ({ product, refetch }) => {
   console.log(product);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/seller/my-product/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://lozzeby-server-side.vercel.app/users/seller/my-product/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -20,7 +23,7 @@ const MyProduct = ({ product, refetch }) => {
 
   const handleProductAvailable = (product) => {
     fetch(
-      `http://localhost:5000/users/seller/my-product-available/${product._id}`,
+      `https://lozzeby-server-side.vercel.app/users/seller/my-product-available/${product._id}`,
       {
         method: "PUT",
         headers: {
@@ -39,7 +42,7 @@ const MyProduct = ({ product, refetch }) => {
   };
 
   // const handleProductSold = (product) => {
-  //   fetch(`http://localhost:5000/users/seller/my-product-sold/${product._id}`, {
+  //   fetch(`https://lozzeby-server-side.vercel.app/users/seller/my-product-sold/${product._id}`, {
   //     method: "PUT",
   //     headers: {
   //       "content-type": "application/json",
@@ -56,14 +59,17 @@ const MyProduct = ({ product, refetch }) => {
   // };
 
   const handleProductAdvertise = (product) => {
-    fetch("http://localhost:5000/users/seller/my-product-advertise", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
-      },
-      body: JSON.stringify(product),
-    })
+    fetch(
+      "https://lozzeby-server-side.vercel.app/users/seller/my-product-advertise",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+        },
+        body: JSON.stringify(product),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

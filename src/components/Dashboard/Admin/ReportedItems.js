@@ -6,16 +6,21 @@ const ReportedItems = () => {
   const { data: reportedProducts = [], refetch } = useQuery({
     queryKey: ["reportedProducts"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/reported-product");
+      const res = await fetch(
+        "https://lozzeby-server-side.vercel.app/reported-product"
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const hadleDelete = (id) => {
-    fetch(`http://localhost:5000/reported-product/delete/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://lozzeby-server-side.vercel.app/reported-product/delete/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
